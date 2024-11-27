@@ -29,11 +29,12 @@ def otherTax(expense, other):
     operationO = (expense * otherConverted)
     return operationO
 
-def storage(expense, tax):
+def storage(expense, tax, total):
     data = read_file('storagedData.json')
     formato = {
         "Expense": expense,
-        "Tax": tax
+        "Tax": tax,
+        "Total": total
     }
     data.append(formato)
     write_file(data, 'storagedData.json')

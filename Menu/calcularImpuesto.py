@@ -25,90 +25,70 @@ def taxesCalculator():
                 if taxOptions2 == 1:
                     iva = ivaTax(expense)
                     totalTax += iva
+                    total = expense + totalTax
                     print(f"""
         ---------------------------------------------------
                     RESULTADO DEL CÁLCULO
         ---------------------------------------------------
         Base ammount: $[{expense}]
         Tax: $[{iva}]
-        Total with taxes: $[{expense + totalTax}]""")
-                    
-                    option = int(input("\nType '1' to save or '0' to cancel: "))
-                    if (option == 1):
-                        storage(expense, totalTax)
-                        print('Expense successfully saved!')
-                    elif (option == 0):
-                        print('Operation cancelled.')
-                    else: raise ValueError()
+        Total with taxes: $[{total}]""")
                 elif taxOptions2 == 2:
                     special = specialTax(expense)
                     totalTax += special
+                    total = expense + totalTax
                     print(f"""
         ---------------------------------------------------
                     RESULTADO DEL CÁLCULO
         ---------------------------------------------------
         Base ammount: $[{expense}]
         Tax: $[{special}]
-        Total with taxes: $[{expense + totalTax}]""")
-                    
-                    option = int(input("\nType '1' to save or '0' to cancel: "))
-                    if (option == 1):
-                        storage(expense, totalTax)
-                        print('Expense successfully saved!')
-                    elif (option == 0):
-                        print('Operation cancelled.')
-                    else: raise ValueError()
+        Total with taxes: $[{total}]""")
                 elif taxOptions2 == 3:
                     local = localTax(expense)
                     totalTax += local
+                    total = expense + totalTax
                     print(f"""
         ---------------------------------------------------
                     RESULTADO DEL CÁLCULO
         ---------------------------------------------------
         Base ammount: $[{expense}]
         Tax: $[{local}]
-        Total with taxes: $[{expense + totalTax}]""")
-                    
-                    option = int(input("\nType '1' to save or '0' to cancel: "))
-                    if (option == 1):
-                        storage(expense, totalTax)
-                        print('Expense successfully saved!')
-                    elif (option == 0):
-                        print('Operation cancelled.')
-                    else: raise ValueError()
+        Total with taxes: $[{total}]""")
                 elif taxOptions2 == 4:
                     other = float(input("Please type the other tax percentage: "))
                     otherResult = otherTax(expense, other)
                     totalTax += otherResult
+                    total = expense + totalTax
                     print(f"""
         ---------------------------------------------------
                     RESULTADO DEL CÁLCULO
         ---------------------------------------------------
         Base ammount: $[{expense}]
         Tax: $[{otherResult}]
-        Total with taxes: $[{expense + totalTax}]""")
-                    
-                    option = int(input("\nType '1' to save or '0' to cancel: "))
-                    if (option == 1):
-                        storage(expense, totalTax)
-                        print('Expense successfully saved!')
-                    elif (option == 0):
-                        print('Operation cancelled.')
-                    else: raise ValueError()
+        Total with taxes: $[{total}]""")
                 else: raise ValueError()
                 
                 addMore = int(input('''\n
     ==============================================
-    Do you want to calculate another expense?
+    Do you want to sum another tax?
     1. Yes
     2. No
-    =============================================='''))
+    ==============================================:\n'''))
                 if addMore == 1:
                     pass
-                elif addMore == 0:
+                elif addMore == 2:
                     break
                 else: raise ValueError()
-
+                
+                
+            option = int(input("\nType '1' to save or '2' to cancel: "))
+            if (option == 1):
+                storage(expense, totalTax, total)
+                print('Expense successfully saved!')
+            elif (option == 2):
+                print('Operation cancelled.')
+            else: raise ValueError()
                         
             print("""
     ===============================
@@ -124,4 +104,4 @@ def taxesCalculator():
                 pass
                 
         except ValueError as e:
-            print("\nInvalid option. Please enter a number between 1 and 4. Or 1 and 0.")
+            print("\nInvalid option. Please enter a number between 1 and 4. Or 1 and 2.")

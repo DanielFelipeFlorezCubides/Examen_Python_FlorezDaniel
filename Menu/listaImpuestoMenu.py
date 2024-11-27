@@ -22,6 +22,7 @@ def listaImpuestos():
             
             option = int(input('Please choose one of the available options: '))
             if option == 1:
+                os.system('clear')
                 taxesCalculator()
             elif option == 2:
                 os.system('clear')
